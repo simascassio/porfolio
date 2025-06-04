@@ -1,165 +1,441 @@
-body {
-    margin-left: 15%;
-    margin-right: 15%;
+/* RESET BÁSICO E CONFIGURAÇÕES GLOBAIS */
+:root {
+    --azul-cta: #1F7CFF;
+    --azul-hover: #0a58c3;
+    --vermelho-destaque: #F75C4E;
+    --preto-texto-principal: #070F18;
+    --preto-texto-secundario: #000;
+    --cinza-texto: #575455;
+    --cinza-fundo-input: #F5F6FB;
+    --branco: #FFFFFF;
+    --fonte-padrao: 'Poppins', sans-serif;
 }
+
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0 10%; /* Margens laterais responsivas */
+    font-family: var(--fonte-padrao);
+    color: var(--preto-texto-principal);
+    line-height: 1.6;
+    background-color: var(--branco);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: var(--preto-texto-principal);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--azul-cta);
+}
+
+/* CLASSE UTILITÁRIA PARA ACESSIBILIDADE */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* CONTAINER GENÉRICO */
 .container {
     display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Layout responsivo */
+    gap: 30px; /* Espaçamento entre colunas */
+    align-items: center;
+    padding: 40px 0; /* Espaçamento vertical */
 }
-#header{
-    font-family: poppins;
-    font-style: normal;
-    font-size: 28px;
-    line-height: 42px;
-    text-decoration-line: underline;
-    color: #070f18;
-    margin-top: 40px;
-    margin-bottom: 40px;
+
+/* CABEÇALHO */
+header.container {
+    padding: 20px 0; /* Padding vertical menor */
+    border-bottom: 1px solid #eee;
+}
+
+#header {
+    font-size: clamp(1.5rem, 3vw, 1.75rem);
+    line-height: 1.5;
+    text-decoration: underline;
     font-weight: 600;
 }
-#menu{
+
+#menu {
     text-align: right;
-    margin-top: 40px;
 }
-#menu li{
+
+#menu ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+
+#menu li {
     display: inline-block;
-    margin-left: 20px;
-    color: #070F18;
+    margin-left: 25px;
+}
 
-    text-align: center;
-    font-family: Poppins;
-    font-size: 16px;
-    font-style: normal;
-    font-weight:normal;
-    line-height:  24px;;
+#menu a {
+    font-size: 1rem;
+    font-weight: 400;
 }
-a{
-    color: black;
-    text-decoration: none;
-}
-#buttoncta{
-    border-radius: 50px;
-    background: #1F7CFF;
-    color: #FFF;
-    text-align: center;
-    font-family: Poppins;
-    font-size: 16px;
-    font-style: normal;
-    line-height: 24px;
-    padding: 10px 25px 10px 25px;
-   
 
+/* SEÇÃO HERO */
+.hero-section {
+    padding: 60px 0;
 }
+
+#headercta h1 {
+    color: var(--preto-texto-secundario);
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 700; /* Bold */
+    line-height: 1.3;
+    margin-bottom: 15px;
+}
+
 p.gray {
-    color: #575455;
-    font-family: Poppins;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: normal;
-    line-height: 32px; 
+    color: var(--cinza-texto);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+#buttoncta {
+    display: inline-block; /* Para aplicar padding */
+    border-radius: 50px;
+    background: var(--azul-cta);
+    color: var(--branco);
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 12px 30px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#buttoncta:hover {
+    background-color: var(--azul-hover);
+    transform: translateY(-3px);
+}
+
+#headerimg {
+    text-align: center; /* Centraliza imagem em telas menores */
+}
+
+/* SEÇÃO CLIENTES */
+#clients {
+    padding: 30px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    gap: 20px; /* Espaçamento menor */
+}
+
+#headerclienttext h2 {
+    color: var(--preto-texto-principal);
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.headerlogo {
+    text-align: center;
+}
+
+.headerlogo img {
+    max-height: 40px; /* Limita altura dos logos */
+    width: auto;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.headerlogo img:hover {
+    opacity: 1;
+}
+
+/* TÍTULOS DE SEÇÃO (Serviços, Portfólio) */
+.services-title,
+#portfolio-section-title {
+    text-align: center;
+    padding: 50px 0 30px; /* Espaçamento ajustado */
+    grid-template-columns: 1fr; /* Garante uma coluna */
+}
+
+h2.red {
+    color: var(--vermelho-destaque);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+h1.black {
+    color: var(--preto-texto-secundario);
+    font-size: clamp(1.8rem, 4vw, 2.25rem);
+    font-weight: 700;
+    margin: 0;
+}
+
+/* SEÇÃO SERVIÇOS - CARDS */
+.services-cards {
+    padding-bottom: 60px;
+    gap: 40px; /* Espaçamento maior entre cards */
+}
+
+.service-card {
+    text-align: center;
+    padding: 20px;
+}
+
+.service-card img {
+    margin-bottom: 20px;
+    height: 60px; /* Tamanho dos ícones */
+    width: auto;
+    margin-left: auto; /* Centraliza ícones */
+    margin-right: auto;
+}
+
+.service-card h3 {
+    color: var(--preto-texto-principal);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* SEÇÃO CONTATO */
+#contact-section {
+    padding: 80px 0;
+    background-color: #fdfdfd; /* Fundo levemente diferente */
+}
+
+#contactimg img {
+   max-width: 450px; /* Limita tamanho da imagem */
+   margin: 0 auto; /* Centraliza */
+}
+
+#contactForm {
+    text-align: left;
+}
+
+#contactForm h2.red {
+    margin-bottom: 10px;
+}
+
+#contactForm h1.black {
+    margin-bottom: 15px;
+}
+
+#contactForm p.gray {
+    margin-bottom: 30px;
+}
+
+#contactForm form {
+    display: flex;
+    flex-direction: column; /* Empilha input e botão */
+    align-items: flex-start;
+    gap: 15px;
+}
+
+#contactForm input[type="email"] {
+    border-radius: 50px;
+    background: var(--cinza-fundo-input);
+    color: var(--cinza-texto);
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    width: 100%;
+    max-width: 400px;
+    padding: 15px 25px;
+}
+
+#contactForm input[type="email"]:focus {
+    outline: none;
+    border-color: var(--azul-cta);
+    box-shadow: 0 0 0 2px rgba(31, 124, 255, 0.3);
+}
+
+#contactForm button[type="submit"] {
+    color: var(--branco);
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 50px;
+    background: var(--azul-cta);
+    border: none;
+    padding: 10px 35px;
+    box-shadow: 0px 8px 15px rgba(31, 124, 255, 0.3);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+#contactForm button[type="submit"]:hover {
+    background-color: var(--azul-hover);
+    transform: translateY(-3px);
+    box-shadow: 0px 10px 20px rgba(31, 124, 255, 0.4);
+}
+
+#contactForm button[type="submit"]:focus {
+    outline: 3px solid var(--azul-cta);
+    outline-offset: 2px;
+}
+
+/* SEÇÃO PORTFÓLIO */
+.portfolio-gallery {
+    padding-bottom: 80px;
+    gap: 25px;
+}
+
+.Portfolioimg {
+    padding: 0; /* Remove padding extra */
+    overflow: hidden; /* Garante que a imagem não ultrapasse */
+    border-radius: 8px;
+}
+
+.Portfolioimg img {
+    transition: transform 0.4s ease;
+}
+
+.Portfolioimg img:hover {
+    transform: scale(1.05);
+}
+
+/* ===========================
+   MEDIA QUERIES
+=========================== */
+
+/* Tablets e Telas Médias */
+@media (max-width: 992px) {
+    body {
+        margin: 0 8%;
     }
-    #headercta h1{
-    color: #000;
-    font-family: Poppins;
-    font-size: 45px;
-    font-style: normal;
-    font-weight: bold;
+    .container {
+        gap: 25px;
     }
-    #headerimg{
-    margin-left: 42px;
+    #headercta h1 {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
     }
-    #headerimg img{
-        width: 100%;
-    }
-    .headerlogo {
+    #contactForm {
+        margin-left: 0; /* Remove margem */
         text-align: center;
     }
-    #clients{
-        margin-top: 50px;
-        margin-bottom: 50px;
+    #contactForm form {
+        align-items: center;
     }
-    #headerclienttext{
-        color: #070F18;
-        font-family: Poppins;
-        font-size: 16px;
-        font-style: normal;
-        line-height: normal;
+    #contactForm input[type="email"] {
+        max-width: 100%;
     }
-    h2.red{
-        color: #F75C4E;
-        font-family: Poppins;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
+}
+
+/* Celulares */
+@media (max-width: 767px) {
+    body {
+        margin: 0 5%;
     }
-    h1.black{
-        color: #000;
-        font-family: Poppins;
-        font-size: 36px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-        margin-top: 0;
+    header.container {
+        grid-template-columns: 1fr; /* Uma coluna */
+        text-align: center;
+        gap: 15px;
     }
-    .textcenter{
+    #menu {
+        text-align: center;
+        margin-top: 10px;
+    }
+    #menu li {
+        margin: 0 10px;
+    }
+    .hero-section {
+        grid-template-columns: 1fr; /* Uma coluna */
         text-align: center;
     }
-    #services .textcenter h3{
-        color: #070F18;
-        font-family: Poppins;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: normal;
+    #headercta {
+        order: 2; /* Texto abaixo da imagem */
     }
-    #contactimg img {
-       width: 100%;
+    #headerimg {
+        order: 1;
+        margin-left: 0;
+        margin-bottom: 30px;
     }
-    #contactForm{
-        margin-left: 75px;
-        text-align: left;
+    #clients {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 15px;
     }
-    #contact{
-        margin-top: 100px;
-    }
-    #contactForm input{
-        border-radius: 50px;
-        background: #F5F6FB;
-        color: #575455;
-        font-family: Poppins;
-        font-size: 16px;
-        font-style: normal;
-        line-height: normal;
-        border: 0;
-        width: 70%;
-        padding: 15px 30px 15px 30px;
-    }
-    #contactForm button{
-        color: #FFF;
+    #headerclienttext {
+        grid-column: 1 / -1; /* Ocupa toda a largura */
         text-align: center;
-        font-family: Poppins;
-        font-size: 16px;
-        font-style: normal;
-        line-height: normal;
-        border-radius: 50px;
-        background: #1F7CFF;
-        border: 0;
-        width: 150px;
-        height: 35px;
-        box-shadow:#264672 0px 10px 15px ;
-        cursor: pointer;
+        margin-bottom: 10px;
     }
-    #Portfoliotitle{
-        margin-top: 150px;
+    .services-cards {
+        grid-template-columns: 1fr; /* Uma coluna */
     }
-    .Portfolioimg img{
-        width: 100%;
+    #contact-section {
+        grid-template-columns: 1fr; /* Uma coluna */
+        text-align: center;
     }
-    .Portfolioimg{
-        padding: 20px;
+    #contactimg {
+        margin-bottom: 30px;
     }
+    .portfolio-gallery {
+        grid-template-columns: 1fr; /* Uma coluna */
+    }
+}
+
+/* Celulares menores */
+@media (max-width: 480px) {
+    #header {
+        font-size: 1.3rem;
+    }
+    #menu li {
+        margin-left: 15px;
+    }
+    #menu a {
+        font-size: 0.9rem;
+    }
+    #headercta h1 {
+        font-size: 1.6rem;
+    }
+    p.gray {
+        font-size: 0.95rem;
+    }
+    #buttoncta {
+        padding: 10px 25px;
+        font-size: 0.95rem;
+    }
+    .headerlogo img {
+        max-height: 30px;
+    }
+    h1.black {
+        font-size: 1.6rem;
+    }
+    .service-card h3 {
+        font-size: 1.1rem;
+    }
+    #contactForm input[type="email"] {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
+    #contactForm button[type="submit"] {
+        padding: 8px 30px;
+        font-size: 0.95rem;
+    }
+}
